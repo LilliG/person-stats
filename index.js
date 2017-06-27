@@ -1,12 +1,15 @@
-console.log("It worked!")
-
 function changeHeading(ev) {
-    ev.preventDefault()
-    const f = ev.target
-    const name = f.personName.value
-    const heading = document.querySelector('h1')
-    heading.textContent = name
+  ev.preventDefault()
+  const f = ev.target
+  const text = f.personName.value + ' ' + f.personAge.value
+  //const heading = document.querySelector('h1')
+  //heading.innerHTML = name
+  const stats = document.querySelector('#stats')
+  stats.innerHTML = text
+
+  const color = f.colorName.value
+  stats.style.color = color
 }
 
-const personForm = document.querySelector("#person-form")
+const personForm = document.querySelector('#person-form')
 personForm.addEventListener('submit', changeHeading)
