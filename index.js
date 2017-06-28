@@ -1,22 +1,5 @@
-function changeHeading(ev) {
-  ev.preventDefault()
-  const f = ev.target
-  const name = f.personName.value
-  const age = f.personAge.value
+function renderColor(f,list) {
   const color = f.colorName.value
-  
-  const stats = document.querySelector('#stats')
-
-  const list = document.createElement('ul')
-
-  const nameItem = document.createElement('li')
-  nameItem.textContent = `Name: ${name}`
-  list.appendChild(nameItem)
-
-  const ageItem = document.createElement('li')
-  ageItem.textContent = `Age: ${age}`
-  list.appendChild(ageItem)
-
   const colorItem = document.createElement('li')
   colorItem.textContent = `Favorite Color:`
   list.appendChild(colorItem)
@@ -26,9 +9,31 @@ function changeHeading(ev) {
   colorDiv.style.width = '6rem'
   colorDiv.style.height = "3rem"
   colorItem.appendChild(colorDiv)
+}
 
+function renderListItem(f, text, stat, list) {
+  const Item = document.createElement('li')
+  Item.textContent = `${text} ${stat}`
+  list.appendChild(Item)
+}
+
+function renderList(f) {
+  const stats = document.querySelector('#stats')
+
+  const list = document.createElement('ul')
+
+  renderListItem(f, "Name:", f.personName.value, list)
+  renderListItem(f, "Age:", f.personAge.value, list)
+  renderColor(f,list)
+  
   stats.appendChild(list)
 }
 
+function handleSubmit(ev) {
+  ev.preventDefault()
+  const f = ev.target
+  renderList(f)
+}
+
 const personForm = document.querySelector('#person-form')
-personForm.addEventListener('submit', changeHeading)
+personForm.addEventListener('submit', handleSubmit)
